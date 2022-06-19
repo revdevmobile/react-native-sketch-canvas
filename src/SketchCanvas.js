@@ -1,18 +1,14 @@
 'use strict';
-
-import React from 'react'
-import PropTypes from 'prop-types'
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+import PropTypes from 'prop-types';
+import React from 'react';
 import ReactNative, {
-  requireNativeComponent,
-  NativeModules,
-  UIManager,
-  PanResponder,
+  NativeModules, PanResponder,
   PixelRatio,
-  Platform,
-  ViewPropTypes,
-  processColor
-} from 'react-native'
+  Platform, processColor, requireNativeComponent, UIManager
+} from 'react-native';
 import { requestPermissions } from './handlePermissions';
+
 
 const RNSketchCanvas = requireNativeComponent('RNSketchCanvas', SketchCanvas, {
   nativeOnly: {
@@ -92,11 +88,7 @@ class SketchCanvas extends React.Component {
     this.state.text = this._processText(props.text ? props.text.map(t => Object.assign({}, t)) : null)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      text: this._processText(nextProps.text ? nextProps.text.map(t => Object.assign({}, t)) : null)
-    })
-  }
+
 
   _processText(text) {
     text && text.forEach(t => t.fontColor = processColor(t.fontColor))
@@ -168,7 +160,7 @@ class SketchCanvas extends React.Component {
           id: parseInt(Math.random() * 100000000), color: this.props.strokeColor,
           width: this.props.strokeWidth, data: []
         }
-        
+
         UIManager.dispatchViewManagerCommand(
           this._handle,
           UIManager.getViewManagerConfig('RNSketchCanvas').Commands.newPath,
