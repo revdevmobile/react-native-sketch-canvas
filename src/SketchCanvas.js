@@ -86,6 +86,8 @@ class SketchCanvas extends React.Component {
     this._initialized = false
 
     this.state.text = this._processText(props.text ? props.text.map(t => Object.assign({}, t)) : null)
+    this._componentWillMount();
+
   }
 
 
@@ -210,7 +212,6 @@ class SketchCanvas extends React.Component {
   }
 
   async componentDidMount() {
-    this._componentWillMount();
     const isStoragePermissionAuthorized = await requestPermissions(
       this.props.permissionDialogTitle,
       this.props.permissionDialogMessage,
