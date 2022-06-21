@@ -144,7 +144,7 @@ class SketchCanvas extends React.Component {
     }
   }
 
-  componentWillMount() {
+  _componentWillMount() {
     this.panResponder = PanResponder.create({
       // Ask to be the responder:
       onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -210,6 +210,7 @@ class SketchCanvas extends React.Component {
   }
 
   async componentDidMount() {
+    this._componentWillMount();
     const isStoragePermissionAuthorized = await requestPermissions(
       this.props.permissionDialogTitle,
       this.props.permissionDialogMessage,
