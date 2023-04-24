@@ -1,5 +1,4 @@
 'use strict';
-import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactNative, {
@@ -20,7 +19,6 @@ const SketchCanvasManager = NativeModules.RNSketchCanvasManager || {};
 
 class SketchCanvas extends React.Component {
   static propTypes = {
-    style: ViewPropTypes.style,
     strokeColor: PropTypes.string,
     strokeWidth: PropTypes.number,
     onPathsChange: PropTypes.func,
