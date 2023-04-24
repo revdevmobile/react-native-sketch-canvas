@@ -1,4 +1,3 @@
-import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -10,8 +9,6 @@ import SketchCanvas from './src/SketchCanvas';
 
 export default class RNSketchCanvas extends React.Component {
   static propTypes = {
-    containerStyle: ViewPropTypes.style,
-    canvasStyle: ViewPropTypes.style,
     onStrokeStart: PropTypes.func,
     onStrokeChanged: PropTypes.func,
     onStrokeEnd: PropTypes.func,
