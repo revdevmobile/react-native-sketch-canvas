@@ -216,6 +216,17 @@ class SketchCanvas extends React.Component {
     );
   }
 
+  fixImageForSketchCanvas(localSourceImage) {
+    if (localSourceImage) {
+      const regex = /file:\/*/
+      const fixedPath = localSourceImage.filename.replace(regex, "");
+      localSourceImage.filename = fixedPath
+    }
+
+    return localSourceImage;
+
+  }
+
   render() {
     return (
       <RNSketchCanvas
@@ -238,7 +249,7 @@ class SketchCanvas extends React.Component {
             this.props.onSketchSaved(e.nativeEvent.success)
           }
         }}
-        localSourceImage={this.props.localSourceImage}
+        localSourceImage={fixImageForSketchCanvas(this.props.localSourceImage)}
         permissionDialogTitle={this.props.permissionDialogTitle}
         permissionDialogMessage={this.props.permissionDialogMessage}
         text={this.state.text}
