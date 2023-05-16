@@ -249,7 +249,7 @@ class SketchCanvas extends React.Component {
             this.props.onSketchSaved(e.nativeEvent.success)
           }
         }}
-        localSourceImage={fixImageForSketchCanvas(this.props.localSourceImage)}
+        localSourceImage={this.fixImageForSketchCanvas(this.props.localSourceImage)}
         permissionDialogTitle={this.props.permissionDialogTitle}
         permissionDialogMessage={this.props.permissionDialogMessage}
         text={this.state.text}
