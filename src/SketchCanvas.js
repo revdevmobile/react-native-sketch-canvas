@@ -217,13 +217,14 @@ class SketchCanvas extends React.Component {
   }
 
   fixImageForSketchCanvas(localSourceImage) {
+    const fixedLocalSourceImage = { ...localSourceImage };
     if (localSourceImage) {
       const regex = /file:\/*/
       const fixedPath = localSourceImage.filename.replace(regex, "");
-      localSourceImage.filename = fixedPath
+      fixedLocalSourceImage.filename = fixedPath
     }
 
-    return localSourceImage;
+    return fixedLocalSourceImage;
 
   }
 
