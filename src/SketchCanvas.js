@@ -136,11 +136,22 @@ class SketchCanvas extends React.Component {
     return this._paths
   }
 
+  /**
+  * There is a bug with newer version of react native that doesn't handle spaces
+  * https://github.com/facebook/react-native/issues/36512
+  */
+  getBase64Callback(err, result) {
+    const fixedResult = result.replace(/(\r\n|\n|\r|\s)/gm, '')
+    this._callback(err, fixedResult);
+
+  }
+
   getBase64(imageType, transparent, includeImage, includeText, cropToImageSize, callback) {
+    this._callback = callback
     if (Platform.OS === 'ios') {
-      SketchCanvasManager.transferToBase64(this._handle, imageType, transparent, includeImage, includeText, cropToImageSize, callback)
+      SketchCanvasManager.transferToBase64(this._handle, imageType, transparent, includeImage, includeText, cropToImageSize, this.getBase64Callback)
     } else {
-      NativeModules.SketchCanvasModule.transferToBase64(this._handle, imageType, transparent, includeImage, includeText, cropToImageSize, callback)
+      NativeModules.SketchCanvasModule.transferToBase64(this._handle, imageType, transparent, includeImage, includeText, cropToImageSize, this.getBase64Callback)
     }
   }
 
